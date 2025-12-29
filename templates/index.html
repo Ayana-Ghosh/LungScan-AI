@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LungScan AI – Lung Cancer Detection</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(120deg, #e0f7fa, #f9f9f9);
+            min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .main-card {
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            background-color: white;
+            padding: 30px;
+        }
+        .title-text {
+            color: #00796b;
+            font-weight: 700;
+            font-size: 2.5rem;
+        }
+        .subtitle {
+            color: #455a64;
+            font-size: 1.1rem;
+        }
+        .btn-primary {
+            background-color: #00796b;
+            border-color: #00796b;
+        }
+        .btn-primary:hover {
+            background-color: #004d40;
+            border-color: #004d40;
+        }
+        label {
+            font-weight: 600;
+            color: #37474f;
+        }
+
+        /* About icon styling */
+        .about-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #00796b;
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .about-icon:hover {
+            background-color: #004d40;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container d-flex flex-column align-items-center justify-content-center pt-5">
+        <div class="text-center mb-4">
+            <h1 class="title-text">LungScan AI</h1>
+            <p class="subtitle">AI-powered Lung Cancer Detection from Medical Imaging</p>
+        </div>
+
+        <div class="col-md-6 col-lg-5">
+            <div class="main-card">
+                <form action="/predict" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Upload Lung Scan (X-ray/MRI)</label>
+                        <input type="file" class="form-control" name="image" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="model" class="form-label">Select Prediction Model</label>
+                        <select class="form-select" name="model" required>
+                            <option value="vgg16">VGG16</option>
+                            <option value="resnet">ResNet50</option>
+                            <option value="inception">Inception</option>
+                            <option value="xception">Xception</option>
+                            <option value="vgg16">Custom CNN</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Run Diagnosis</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Icon -->
+    <div class="about-icon" data-bs-toggle="modal" data-bs-target="#aboutModal">
+        ?
+    </div>
+
+    <!-- About Modal -->
+    <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="aboutModalLabel">About LungScan AI</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p><strong>LungScan AI</strong> is a machine learning-powered web application designed to assist in the early detection of lung cancer using medical imaging. 
+                It utilizes histopathological images — microscopic images of stained tissue (commonly with Hematoxylin and Eosin or H&E) captured through a light microscope. 
+                These images allow for detailed analysis of cellular structures to detect cancerous changes. 
+                Users can upload an image and choose from various deep learning models (including VGG16, ResNet50, Inception, Xception, and a Custom CNN) to generate predictions. 
+                This tool is intended to support preliminary diagnosis and facilitate medical research.</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

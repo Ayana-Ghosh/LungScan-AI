@@ -1,0 +1,8 @@
+venv/
+__pycache__/
+*.pyc
+.env
+models/
+app_old.py
+utils_old.py
+utils_old2.py
