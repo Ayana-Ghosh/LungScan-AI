@@ -48,22 +48,23 @@ def predict():
         predicted_label, confidence = predict_with_model(model, image)
         result_text = f"{predicted_label} ({confidence:.2f}%)"
 
+        # ---------------- Grad-CAM code commented out for Render deployment ----------------
+        """
         heatmap = make_gradcam_heatmap(model, image_path, model_choice.lower())
         gradcam_path = os.path.join('static/gradcam', 'gradcam_' + unique_filename)
         save_and_overlay_gradcam(image_path, heatmap, gradcam_path, model_choice.lower())
+        """
+        # ---------------------------------------------------------------------------------
 
         return render_template("result.html",
                                image_file=unique_filename,
                                model=model_choice.upper(),
                                result=result_text,
-                               gradcam_file=os.path.basename(gradcam_path))
+                               gradcam_file=None)  # No Grad-CAM file for Render deployment
     else:
         return render_template("error.html", error_message="Unsupported file type. Please upload PNG, JPG or JPEG images only.")
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
 if __name__ == '__main__':
     # Use Render's PORT environment variable, default to 5000 for local testing
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
-
