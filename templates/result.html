@@ -51,40 +51,31 @@
 
         <div class="col-md-6 col-lg-5">
             <div class="main-card text-center">
-                <!-- <p class="label-text">Prediction:</p>
-                <h3 class="mb-4 text-primary">{{ result }}</h3>
 
-                <div>
-                    <p class="label-text">Uploaded Image:</p>
-                    <img src="{{ url_for('static', filename='images/' + image_file) }}" 
-                         alt="Uploaded Image" class="img-preview">
-                </div>
+                <!-- Uploaded Image -->
+                <p class="label-text">Uploaded Image:</p>
+                <img src="{{ url_for('static', filename='images/' + image_file) }}" 
+                     alt="Uploaded Image" class="img-preview">
 
-                {% if gradcam %}
+                <!-- Grad-CAM Visualization (conditional) -->
+                {% if gradcam_file %}
                 <div>
                     <p class="label-text">Grad-CAM Visualization:</p>
-                    <img src="{{ url_for('static', filename='images/' + gradcam) }}" 
+                    <img src="{{ url_for('static', filename='gradcam/' + gradcam_file) }}" 
                          alt="Grad-CAM Output" class="img-preview">
                 </div>
+                {% else %}
+                <p class="text-muted"><em>Grad-CAM visualization is disabled in this deployment.</em></p>
                 {% endif %}
 
+                <!-- Prediction Result -->
+                <div class="label mt-3">
+                    <p class="label-text">Prediction:</p>
+                    <h4 class="mb-4 text-primary">{{ result }}</h4>
+                </div>
+                
+                <!-- Back Button -->
                 <a href="/" class="btn btn-primary mt-3">Analyze Another Scan</a>
-                 -->
-                 <p class="label-text">Uploaded Image:</p>
-                 <img src="{{ url_for('static', filename='images/' + image_file) }}" 
-                         alt="Uploaded Image" class="img-preview">
-             
-                 <p class="label-text">Grad-CAM Visualization:</p>
-                 <img src="{{ url_for('static', filename='gradcam/' + gradcam_file) }}" alt="GradCAM Image" class="img-preview">
-                                    
-                 <div class="label">
-                     <!-- <strong>Prediction:</strong> {{ result }} -->
-                     <p class="label-text">Prediction:</p>
-                     <h4 class="mb-4 text-primary">{{ result }}</h4>
-                 
-                 </div>
-                 
-                 <a href="/" class="btn btn-primary mt-3">Analyze Another Scan</a>
             </div>
         </div>
     </div>
